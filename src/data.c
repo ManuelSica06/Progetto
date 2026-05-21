@@ -2,7 +2,7 @@
  * File: data.c
  * Autore: [Manuel Sica] 
  * Data: [19/05/2026]
- * Descrizione:Implementazione delle funzioni per la gestione del tipo dato astratto
+ * Descrizione: Implementazione delle funzioni per la gestione del tipo dato astratto
  * "Data". Esso permette di gestire solo le date successive al anno 2000.
  */
 
@@ -65,5 +65,5 @@ void stampaData(data d){
         return;
     }
 
-    printf("Data: %d/%d/%d", d->giorno, d->mese, d->anno);
+    printf("Data: %d/%d/%d\n", d->giorno, d->mese, d->anno);
 }

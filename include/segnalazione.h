@@ -27,7 +27,7 @@ typedef struct c_segnalazione *segnalazione;
  *  Le stringhe non devono essere NULL e l'oggetto data deve essere valido.
  * 
  * Post-condizione:
- *  Restituisce una nuova segnalazione inizializzata.
+ *  Crea un’istanza di segnalazione valida.
  * 
  * Ritorna:
  *  Restituisce una nuova segnalazione inizializzata nello stato iniziale (Aperta: 1)
@@ -46,7 +46,7 @@ segnalazione creaSegnalazione(char *cittadino, char *categoria, char *descrizion
  *  Nessuna pre-condizione specifica.
  * 
  * Post-condizione:
- *  Restituisce la segnalazione con il campo stato aggiornato (o in lavorazione o chiuso).
+ *  Aggiorna il campo stato all'interno della segnalazione (o in lavorazione o chiuso).
  * 
  * Ritorna:
  *  Restituisce la segnalazione allo stato successivo.
@@ -65,7 +65,8 @@ segnalazione aggiornaStato(segnalazione s);
  *  Nessuna pre-condizione specifica.
  * 
  * Post-condizione:
- *  Restituisce un valore di verità (TRUE o FALSE).
+ *  L’istanza “s” viene eliminata, la memoria precedentemente occupata viene liberata 
+ *  e il riferimento non è più utilizzabile.
  * 
  * Ritorna:
  *  TRUE: Se l'istanza della segnalazione è stata eliminata correttamente.

@@ -22,10 +22,10 @@ typedef struct c_data *data;
  *  aa: Anno.
  * 
  * Pre-condizione:
- *  L'anno deve essere maggiore o uguale al 2000.
+ *  L'anno deve essere maggiore o uguale a 2000.
  * 
  * Post-condizione:
- *  Restituisce una data valida composta da giorno, mese ed anno.
+ *  Crea un’istanza di data valida, composta da giorno, mese e anno.
  * 
  * Ritorna:
  *  Se i dati inseriti sono validi restituisce la data, altrimenti restituisce NULL.
@@ -43,10 +43,10 @@ data aggiungiData(int gg, int mm, int aa);
  *  aa: Anno.
  * 
  * Pre-condizione:
- *   L'anno deve essere maggiore o uguale al 2000.
+ *  L'anno deve essere maggiore o uguale al 2000.
  * 
  * Post-condizione:
- *  Restituisce un valore di verità (TRUE o FALSE).
+ *  Nessuna.
  * 
  * Ritorna:
  *  TRUE: Se la data è valida.
@@ -66,7 +66,8 @@ bool verificaData(int gg, int mm, int aa);
  *  Nessuna pre-condizione specifica (Accetta qualsiasi tipo di data).
  * 
  * Post-condizione:
- *  Restituisce un valore di verità (TRUE o FALSE).
+ *  L’istanza “d” viene eliminata, la memoria precedentemente occupata viene liberata 
+ *  e il riferimento non è più utilizzabile.
  * 
  * Ritorna:
  *  TRUE: Se la data è stata eliminata con successo.

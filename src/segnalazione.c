@@ -34,6 +34,7 @@ segnalazione creaSegnalazione(char *cittadino, char *categoria, char *descrizion
         return NULL;
     }
 
+    //Creo un codice identificativo univoco che numeri tutte le segnalazioni.
     static int i=0;
     s->codice = i;
     
@@ -71,6 +72,8 @@ segnalazione creaSegnalazione(char *cittadino, char *categoria, char *descrizion
     s->urgenza = urgenza;
     s->stato = APERTA;
 
+    // Incremento il contatore statico alla fine per garantire che il codice univoco
+    // venga aggiornato solo se la creazione della segnalazione è andata a buon fine.
     i++;
 
     return s;
@@ -100,6 +103,8 @@ bool eliminaSegnalazione(segnalazione s){
     free(s->categoria);
     free(s->descrizione);
 
+    // Richiamo la funzione definita in data.h per liberare la memoria della data
+    eliminaData(s->data_segn);
     free(s);
 
     return true;
