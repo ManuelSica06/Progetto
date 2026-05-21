@@ -1,0 +1,117 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include "../include/segnalazione.h"
+#include "../include/queue.h"
+
+#define NULLITEM NULL
+
+struct node{
+     segnalazione value;
+     struct node *next;
+};
+
+struct c_queue{
+     struct node *head,*tail;
+     int numel;
+};
+
+queue newQueue(void)
+{
+     struct c_queue *q;
+     q = malloc (sizeof(struct c_queue));
+     if (q == NULL){
+          return NULL;
+     }
+
+     q->numel = 0;
+     q->head = NULL;
+     q->tail = NULL;
+     return q;
+} 
+
+int emptyQueue(queue q)
+{
+     if (q==NULL){
+          return -1;
+     }
+     
+     return q->numel == 0;
+}
+
+int enqueue(segnalazione s, queue q)
+{
+    if (q==NULL){
+          return -1;
+    }
+
+    struct node *nuovo;
+    nuovo = malloc (sizeof(struct node));
+    if (nuovo == NULL){
+          return 0;
+    }
+
+    nuovo->value = s;
+    nuovo->next= NULL;
+
+    if(q->head==NULL){
+          q->head = nuovo;
+    }
+    else{
+          q->tail->next= nuovo;
+    }
+
+    q->tail = nuovo;
+    (q->numel)++;
+
+    return 1;
+}
+
+segnalazione dequeue(queue q)
+{
+      if (q==NULL){
+          return NULLITEM;
+      }
+
+      if (q->numel == 0){
+          return NULLITEM;
+      }
+
+      segnalazione result = q->head->value;
+
+      struct node *temp = q->head;
+
+      q->head = q->head->next;
+
+      free(temp);
+
+      if(q->head==NULL){
+          q->tail=NULL;
+      }
+
+      (q->numel)--;
+
+      return result;
+}
+
+bool deleteQueue(queue q){
+     if(q == NULL){
+          return false;
+     }
+
+     struct node *temp;
+
+     while(q->head != NULL){
+          temp = q->head;
+          q->head = q->head->next;
+
+          // Richiamo la funzione definita in segnalazione.h per liberare la memoria della segnalazione
+          eliminaSegnalazione(temp->value);
+
+          free(temp);
+     }
+
+     free(q);
+     
+     return true;
+}
