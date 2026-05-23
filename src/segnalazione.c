@@ -109,3 +109,56 @@ bool eliminaSegnalazione(segnalazione s){
 
     return true;
 }
+
+void stampaSegnalazione(segnalazione s){
+    if(s==NULL){
+        return;
+    }
+    
+    printf("Codice: %d\n", s->codice);
+    printf("Cittadino %s\n", s->cittadino);
+    printf("Categoria %s\n", s->categoria);
+    printf("Descrizione: %s\n", s->descrizione);
+    stampaData(s->data_segn);
+
+    switch(s->urgenza){
+        case 1: printf("Urgenza: Bassa\n"); break;
+        case 2: printf("Urgenza: Media\n"); break;
+        case 3: printf("Urgenza: Alta\n"); break;
+        default: printf("Urgenza: Non definita\n"); break;
+    }
+
+    switch(s->stato){
+        case APERTA: printf("Stato: Aperta\n"); break;
+        case INLAVORAZIONE: printf("stato: In lavorazione\n"); break;
+        case CHIUSA: printf("Stato: Chiusa\n"); break;
+        default: printf("Stato: Non definito\n"); break;
+    }
+}
+
+int minore(segnalazione s1, segnalazione s2){
+    if(s1==NULL || s2==NULL){
+        return -1;
+    }
+
+    if(s1->codice < s2->codice){
+        return 1;
+    }
+    else{
+        return 0;
+    } 
+}
+
+int uguale(segnalazione s1, segnalazione s2){
+    if(s1==NULL || s2==NULL){
+        return -1;
+    }
+
+    if(s1->codice == s2->codice)
+    {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}

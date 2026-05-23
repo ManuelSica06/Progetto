@@ -7,6 +7,7 @@
  */
 
 #include <stdbool.h>
+#include "data.h"
 
 // Tipo astratto (opaco) che rappresenta la segnalazione.
 typedef struct c_segnalazione *segnalazione;
@@ -73,3 +74,63 @@ segnalazione aggiornaStato(segnalazione s);
  *  FALSE: Se l'istanza della segnalazione non è stata inizializzata.
  */
 bool eliminaSegnalazione(segnalazione s);
+
+/*
+ * Funzione: stampaSegnalazione
+ * ----------------------------
+ * Stampa il contenuto dell'intera segnalazione.
+ * 
+ * Parametri:
+ *  s: La segnalazione da stampare.
+ * 
+ * Pre-condizione:
+ *  Nessuna;
+ * 
+ * Post-condizione:
+ *  Nessuna modifica sulla segnalazione.
+ */
+void stampaSegnalazione(segnalazione s);
+
+/*
+ * Funzione: minore
+ * ----------------
+ * Confronta il codice di due segnalazioni per determinare qual è il minore.
+ * 
+ * Parametri:
+ *  s1: Prima segnalazione;
+ *  s2: Seconda segnalazione.
+ * 
+ * Pre-condizione:
+ *  Nessuna.
+ * 
+ * Post-condizione:
+ *  Nessuna modifica delle segnalazioni.
+ * 
+ * Ritorna:
+ * -1: Se una delle due segnalazioni non è valida (NULL);
+ *  1: Se il codice di s1 è minore del codice di s2;
+ *  0: Altrimenti.
+ */
+int minore(segnalazione s1, segnalazione s2);
+
+/*
+ * Funzione: uguale
+ * ----------------
+ * Confronta il codice di due segnalazioni per determinare se sono uguali.
+ * 
+ * Parametri:
+ *  s1: Prima segnalazione;
+ *  s2: Seconda segnalazione.
+ * 
+ * Pre-condizione:
+ *  Nessuna.
+ * 
+ * Post-condizione:
+ *  Nessuna modifica delle segnalazioni.
+ * 
+ * Ritorna:
+ * -1: Se una delle due segnalazioni non è valida (NULL);
+ *  1: Se il codice di s1 è uguale al codice di s2;
+ *  0: Se il codice di s1 è diverso al codice di s2.
+ */
+int uguale(segnalazione s1, segnalazione s2);
