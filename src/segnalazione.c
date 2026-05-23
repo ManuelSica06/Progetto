@@ -130,7 +130,7 @@ void stampaSegnalazione(segnalazione s){
 
     switch(s->stato){
         case APERTA: printf("Stato: Aperta\n"); break;
-        case INLAVORAZIONE: printf("stato: In lavorazione\n"); break;
+        case INLAVORAZIONE: printf("Stato: In lavorazione\n"); break;
         case CHIUSA: printf("Stato: Chiusa\n"); break;
         default: printf("Stato: Non definito\n"); break;
     }
