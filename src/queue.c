@@ -105,9 +105,8 @@ bool eliminaCoda(queue q){
           temp = q->head;
           q->head = q->head->next;
 
-          // Richiamo la funzione definita in segnalazione.h per liberare la memoria della segnalazione
-          eliminaSegnalazione(temp->value);
-
+          // Libero solo il nodo della coda, non la segnalazione
+          // (la memoria della segnalazione è gestita dal BST)
           free(temp);
      }
 
