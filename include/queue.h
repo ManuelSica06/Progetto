@@ -13,7 +13,7 @@
 typedef struct c_queue *queue;
 
 /*
- * Funzione: newQueue
+ * Funzione: nuovaCoda
  * ------------------
  * Permette di allocare lo spazio necessario per la creazione di una nuova coda.
  * 
@@ -29,10 +29,10 @@ typedef struct c_queue *queue;
  * Ritorna:
  *  Il puntatore alla nuova coda se l'allocazione ha successo, altrimenti NULL.
  */
-queue newQueue(void);
+queue nuovaCoda(void);
 
 /*
- * Funzione: emptyQueue
+ * Funzione: codaVuota
  * --------------------
  * Verifica se la coda non ha elementi (vuota).
  * 
@@ -50,10 +50,10 @@ queue newQueue(void);
  *  1: Se la coda è vuota.
  *  0: Se la coda contiene almeno un elemento.
  */
-int emptyQueue(queue q);
+int codaVuota(queue q);
 
 /*
- * Funzione: enqueue
+ * Funzione: accodaSegnalazione
  * -----------------
  * Inserisce un nuovo elemento alla fine della coda.
  * 
@@ -72,10 +72,10 @@ int emptyQueue(queue q);
  *  0: Se l'allocazione di memoria del nuovo nodo fallisce.
  *  1: Se l'inserimento è avvenuto con successo
  */
-int enqueue(segnalazione s, queue q);
+int accodaSegnalazione(segnalazione s, queue q);
 
 /*
- * Funzione: dequeue
+ * Funzione: estraiSegnalazione
  * -----------------
  * Rimuove un elemento dalla coda e lo restituisce.
  *
@@ -92,10 +92,10 @@ int enqueue(segnalazione s, queue q);
  *  Se la coda è valida: L'elemento estratto dalla testa della coda. 
  *  Se la coda è vuota o NULL: NULLITEM.
  */
-segnalazione dequeue(queue q);
+segnalazione estraiSegnalazione(queue q);
 
 /*
- * Funzione: deleteQueue
+ * Funzione: eliminaCoda
  * ---------------------
  * Elimina l'istanza di tipo coda.
  * 
@@ -112,4 +112,4 @@ segnalazione dequeue(queue q);
  *  TRUE: Se la memoria è stata liberata correttamente.
  *  FALSE: Se la coda era già NULL.
  */
-bool deleteQueue(queue q);
+bool eliminaCoda(queue q);

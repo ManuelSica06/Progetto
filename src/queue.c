@@ -6,17 +6,17 @@
 
 #define NULLITEM NULL
 
-struct node{
+struct coda_node{
      segnalazione value;
-     struct node *next;
+     struct coda_node *next;
 };
 
 struct c_queue{
-     struct node *head,*tail;
+     struct coda_node *head,*tail;
      int numel;
 };
 
-queue newQueue(void)
+queue nuovaCoda(void)
 {
      struct c_queue *q;
      q = malloc (sizeof(struct c_queue));
@@ -30,7 +30,7 @@ queue newQueue(void)
      return q;
 } 
 
-int emptyQueue(queue q)
+int codaVuota(queue q)
 {
      if (q==NULL){
           return -1;
@@ -39,67 +39,67 @@ int emptyQueue(queue q)
      return q->numel == 0;
 }
 
-int enqueue(segnalazione s, queue q)
+int accodaSegnalazione(segnalazione s, queue q)
 {
-    if (q==NULL){
+     if (q==NULL){
           return -1;
-    }
+     }
 
-    struct node *nuovo;
-    nuovo = malloc (sizeof(struct node));
-    if (nuovo == NULL){
+     struct coda_node *nuovo;
+     nuovo = malloc (sizeof(struct coda_node));
+     if (nuovo == NULL){
           return 0;
-    }
+     }
 
-    nuovo->value = s;
-    nuovo->next= NULL;
+     nuovo->value = s;
+     nuovo->next= NULL;
 
-    if(q->head==NULL){
+     if(q->head==NULL){
           q->head = nuovo;
-    }
-    else{
+     }
+     else{
           q->tail->next= nuovo;
-    }
+     }
 
-    q->tail = nuovo;
-    (q->numel)++;
+     q->tail = nuovo;
+     (q->numel)++;
 
-    return 1;
+     return 1;
 }
 
-segnalazione dequeue(queue q)
+segnalazione estraiSegnalazione(queue q)
 {
-      if (q==NULL){
+     if (q==NULL){
           return NULLITEM;
-      }
+     }
 
-      if (q->numel == 0){
+     if (q->numel == 0){
           return NULLITEM;
-      }
+     }
 
-      segnalazione result = q->head->value;
+     segnalazione result = q->head->value;
 
-      struct node *temp = q->head;
+     struct coda_node *temp = q->head;
 
-      q->head = q->head->next;
+     q->head = q->head->next;
 
-      free(temp);
+     free(temp);
 
-      if(q->head==NULL){
+     if(q->head==NULL){
           q->tail=NULL;
-      }
+     }
 
-      (q->numel)--;
+     (q->numel)--;
 
-      return result;
+     return result;
 }
 
-bool deleteQueue(queue q){
+bool eliminaCoda(queue q){
      if(q == NULL){
           return false;
      }
 
-     struct node *temp;
+     struct coda_node *temp;
 
      while(q->head != NULL){
           temp = q->head;
