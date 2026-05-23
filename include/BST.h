@@ -90,6 +90,60 @@ bool ricerca(BST T, segnalazione s);
  *  mantenendo le prioprietà di ordinamento del BST.  
  */
 BST inserimento(BST T, segnalazione elem);
+
+/*
+ * Funzione: eliminaNodo
+ * ---------------------
+ * Elimina una segnalazione dall'albero binario di ricerca,
+ * mantenendo la proprietà di ordinamento per codice identificativo.
+ *
+ * Parametri:
+ *  T:   L'albero binario di ricerca da cui eliminare la segnalazione.
+ *  key: La segnalazione da eliminare (identificata tramite codice).
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Se la segnalazione è presente, il nodo corrispondente viene rimosso
+ *  e la memoria del nodo viene liberata, mantenendo la proprietà del BST.
+ *
+ * Ritorna:
+ *  Il puntatore alla radice dell'albero aggiornato.
+ *  NULL se l'albero diventa vuoto dopo l'eliminazione.
+ */
 BST eliminaNodo(BST T, segnalazione key);
+
+/*
+ * Funzione: visitaSimmetrica
+ * --------------------------
+ * Visita l'albero in ordine simmetrico (sinistra, radice, destra) e
+ * stampa tutte le segnalazioni in ordine crescente di codice identificativo.
+ *
+ * Parametri:
+ *  T: L'albero binario di ricerca da visitare.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica all'albero.
+ */
 void visitaSimmetrica(BST T);
+
+/*
+ * Funzione: eliminaBST
+ * --------------------
+ * Elimina l'intero albero binario di ricerca liberando tutta la memoria
+ * allocata, incluse le segnalazioni contenute in ogni nodo.
+ *
+ * Parametri:
+ *  T: L'albero binario di ricerca da eliminare.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Tutta la memoria associata all'albero e alle segnalazioni viene liberata.
+ */
 void eliminaBST(BST T);
