@@ -48,6 +48,7 @@ bool archivioVuoto(BST T)
 bool ricerca(BST T, segnalazione s)
 {
     if(T == NULL){
+        printf("Errore nel BST.");
         return 0;
     }
 
@@ -72,6 +73,7 @@ BST inserimento(BST T, segnalazione elem)
     if(T==NULL){
         return creaFoglia(elem);
     }
+    // Se il codice è già presente nel BST, non viene inserito (nessun duplicato).
     else if(minore(elem, estraiSegnalazione(T))==1){
         T->left = inserimento(T->left, elem);
     }
@@ -101,6 +103,7 @@ static BST creaFoglia(segnalazione elem)
 BST eliminaNodo(BST T, segnalazione key)
 {
     if(T == NULL){
+        printf("Errore nel BST.");
         return T;
     }
     
@@ -113,6 +116,7 @@ BST eliminaNodo(BST T, segnalazione key)
     }
     else
     {
+        // Caso 1: il nodo ha solo il figlio destro, lo sostituisce direttamente.
         if(T->left == NULL)
         {
             struct bst_node *temp = T->right;
@@ -120,6 +124,7 @@ BST eliminaNodo(BST T, segnalazione key)
 
             return temp;
         }
+        // Caso 2: il nodo ha solo il figlio sinistro, lo sostituisce direttamente.
         else if(T->right == NULL)
         {
             struct bst_node *temp = T->left;
@@ -128,6 +133,8 @@ BST eliminaNodo(BST T, segnalazione key)
             return temp;
         }
         
+        // Caso 3: il nodo ha due figli. Trovo il successore (minimo del sottoalbero
+        // destro), copio il suo valore nel nodo corrente ed elimino il successore.
         struct bst_node* temp = valoreMinore(T->right);
         T->value = temp->value;
         T->right = eliminaNodo(T->right, temp->value);
@@ -140,6 +147,8 @@ static struct bst_node *valoreMinore(struct bst_node* bst_node)
 {
     struct bst_node* current = bst_node;
 
+    // Il minimo di un BST si trova scendendo sempre nel figlio sinistro
+    // fino a raggiungere un nodo senza figlio sinistro.
     while(current->left != NULL){
         current = current->left;
     }
@@ -149,6 +158,7 @@ static struct bst_node *valoreMinore(struct bst_node* bst_node)
 
 void visitaSimmetrica(BST T) {
     if(T == NULL){
+        printf("Errore nel BST.");
         return;
     }
 
@@ -165,6 +175,7 @@ void visitaSimmetrica(BST T) {
 
 void eliminaBST(BST T) {
     if (T == NULL){
+        printf("Errore nel BST.");
         return;
     }
 
