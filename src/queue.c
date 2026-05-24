@@ -54,6 +54,8 @@ int accodaSegnalazione(segnalazione s, queue q)
      nuovo->value = s;
      nuovo->next= NULL;
 
+     // Se la coda è vuota il nuovo nodo è anche la testa,
+     // altrimenti lo aggancio in coda tramite tail.
      if(q->head==NULL){
           q->head = nuovo;
      }
@@ -85,6 +87,7 @@ segnalazione estraiSegnalazione(queue q)
 
      free(temp);
 
+     // Se la coda è diventata vuota, resetto anche tail.
      if(q->head==NULL){
           q->tail=NULL;
      }
