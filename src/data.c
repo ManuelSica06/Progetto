@@ -19,6 +19,7 @@ struct c_data{
 
 data aggiungiData(int gg, int mm, int aa){
     if(!verificaData(gg, mm, aa)){
+        printf("La data non è valida.");
         return NULL;
     }
     
@@ -33,7 +34,7 @@ data aggiungiData(int gg, int mm, int aa){
 }
 
 bool verificaData(int gg, int mm, int aa){
-    //Controllo dei limiti base per anno, mesi e giorni negativi.
+    // Controllo dei limiti base per anno, mesi e giorni negativi.
     if(aa<2000 || (mm <1 || mm>12) || gg<1){
         return false;
     }
@@ -44,7 +45,7 @@ bool verificaData(int gg, int mm, int aa){
     bool bisestile = ((aa %4 == 0) && ((aa %100 != 0) || (aa %400 == 0)));
 
     if(mm==2 && bisestile){
-        //Adattamento per l'anno bisestile.
+        // Adattamento per l'anno bisestile.
         giorniMese[1] = 29;
     }
 
@@ -53,6 +54,7 @@ bool verificaData(int gg, int mm, int aa){
 
 bool eliminaData(data d){
     if(d == NULL){
+        printf("Errore nella data.");
         return false;
     }
 
@@ -62,6 +64,7 @@ bool eliminaData(data d){
 
 void stampaData(data d){
     if(d==NULL){
+        printf("Errore nella data.");
         return;
     }
 
