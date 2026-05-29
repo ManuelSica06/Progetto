@@ -107,6 +107,8 @@ segnalazione estraiSegnalazione(queue q);
  * 
  * Post-condizione:
  *  Tutta la memoria associata alla coda viene liberata.
+ *  Le segnalazioni puntate dalla coda non vengono eliminate
+ *  in quanto la loro memoria è gestita dal BST.
  * 
  * Ritorna:
  *  TRUE: Se la memoria è stata liberata correttamente.
