@@ -24,11 +24,13 @@ data aggiungiData(int gg, int mm, int aa){
     }
     
     data nuovaData = malloc(sizeof(struct c_data));
-    if(nuovaData != NULL){
-        nuovaData->giorno = gg;
-        nuovaData->mese = mm;
-        nuovaData->anno = aa;
+    if(nuovaData == NULL){
+        return NULL;
     }
+
+    nuovaData->giorno = gg;
+    nuovaData->mese = mm;
+    nuovaData->anno = aa;
 
     return nuovaData;
 }
