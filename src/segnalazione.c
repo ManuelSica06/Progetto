@@ -31,10 +31,11 @@ segnalazione creaSegnalazione(char *cittadino, char *categoria, char *descrizion
     segnalazione s = malloc(sizeof(struct c_segnalazione));
 
     if(s == NULL){
+        printf("Errore nella segnalazione.");
         return NULL;
     }
 
-    //Creo un codice identificativo univoco che numeri tutte le segnalazioni.
+    // Creo un codice identificativo univoco che numeri tutte le segnalazioni.
     static int i=0;
     s->codice = i;
     
@@ -59,6 +60,8 @@ segnalazione creaSegnalazione(char *cittadino, char *categoria, char *descrizion
 
     s->descrizione = malloc(strlen(descrizione)+1);
     if(s->descrizione == NULL){
+        // Libero la memoria già allocata prima del fallimento
+        // per evitare memory leak. 
         free(s->cittadino);
         free(s->categoria);
         free(s);
@@ -81,6 +84,7 @@ segnalazione creaSegnalazione(char *cittadino, char *categoria, char *descrizion
 
 segnalazione aggiornaStato(segnalazione s){
     if(s == NULL){
+        printf("Errore nella segnalazione.");
         return NULL;
     }
 
@@ -96,6 +100,7 @@ segnalazione aggiornaStato(segnalazione s){
 
 bool eliminaSegnalazione(segnalazione s){
     if(s == NULL){
+        printf("Errore nella segnalazione.");
         return false;
     }
     
@@ -112,6 +117,7 @@ bool eliminaSegnalazione(segnalazione s){
 
 void stampaSegnalazione(segnalazione s){
     if(s==NULL){
+        printf("Errore nella segnalazione.");
         return;
     }
     
@@ -136,8 +142,12 @@ void stampaSegnalazione(segnalazione s){
     }
 }
 
+
+// Funzioni di confronto tra segnalazioni usate dal BST
+// per mantenere la proprietà di ordinamento per codice identificativo.
 int minore(segnalazione s1, segnalazione s2){
     if(s1==NULL || s2==NULL){
+        printf("Errore in una o entrambe le segnalazioni.");
         return -1;
     }
 
@@ -151,6 +161,7 @@ int minore(segnalazione s1, segnalazione s2){
 
 int uguale(segnalazione s1, segnalazione s2){
     if(s1==NULL || s2==NULL){
+        printf("Errore in una o entrambe le segnalazioni.");
         return -1;
     }
 
@@ -161,4 +172,32 @@ int uguale(segnalazione s1, segnalazione s2){
     else{
         return 0;
     }
+}
+
+// Funzioni utili per la gestione delle funzioni in gestione.c
+int ricavaUrgenza(segnalazione s){
+    if(s==NULL){
+        printf("Errore nella segnalazione.");
+        return -1;
+    }
+    
+    return s->urgenza;
+}
+
+int ricavaCodice(segnalazione s){
+    if(s==NULL){
+        printf("Errore nella segnalazione.");
+        return -1;
+    }
+    
+    return s->codice;
+}
+
+int ricavaStato(segnalazione s){
+    if(s==NULL){
+        printf("Errore nella segnalazione.");
+        return -1;
+    }
+
+    return s->stato;
 }

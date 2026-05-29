@@ -48,6 +48,7 @@ segnalazione creaSegnalazione(char *cittadino, char *categoria, char *descrizion
  * 
  * Post-condizione:
  *  Aggiorna il campo stato all'interno della segnalazione (o in lavorazione o chiuso).
+ *  Se lo stato è già "Chiusa", la segnalazione non viene modificata.
  * 
  * Ritorna:
  *  Restituisce la segnalazione allo stato successivo.
@@ -134,3 +135,65 @@ int minore(segnalazione s1, segnalazione s2);
  *  0: Se il codice di s1 è diverso al codice di s2.
  */
 int uguale(segnalazione s1, segnalazione s2);
+
+/*
+ * Funzione: ricavaUrgenza
+ * -----------------------
+ * Restituisce il livello di urgenza di una segnalazione.
+ *
+ * Parametri:
+ *  s: La segnalazione da cui ricavare l'urgenza.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica alla segnalazione.
+ *
+ * Ritorna:
+ *  Il livello di urgenza della segnalazione (1=Bassa, 2=Media, 3=Alta).
+ *  -1 se la segnalazione non è valida (NULL).
+ */
+int ricavaUrgenza(segnalazione s);
+
+/*
+ * Funzione: ricavaCodice
+ * ----------------------
+ * Restituisce il codice identificativo della segnalazione.
+ *
+ * Parametri:
+ *  s: La segnalazione da cui ricavare il codice.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica alla segnalazione.
+ *
+ * Ritorna:
+ *  Il codice identificativo della segnalazione (se valida).
+ * -1: Se la segnalazione è NULL.
+ */
+int ricavaCodice(segnalazione s);
+
+/*
+ * Funzione: ricavaStato
+ * ---------------------
+ * Restituisce lo stato corrente della segnalazione.
+ *
+ * Parametri:
+ *  s: La segnalazione da cui ricavare lo stato.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica alla segnalazione.
+ *
+ * Ritorna:
+ *  1: Se la segnalazione è aperta.
+ *  2: Se la segnalazione è in lavorazione.
+ *  3: Se la segnalazione è chiusa.
+ * -1: Se la segnalazione è NULL.
+ */
+int ricavaStato(segnalazione s);
