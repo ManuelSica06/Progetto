@@ -107,9 +107,35 @@ segnalazione estraiSegnalazione(queue q);
  * 
  * Post-condizione:
  *  Tutta la memoria associata alla coda viene liberata.
+ *  Le segnalazioni puntate dalla coda non vengono eliminate
+ *  in quanto la loro memoria è gestita dal BST.
  * 
  * Ritorna:
  *  TRUE: Se la memoria è stata liberata correttamente.
  *  FALSE: Se la coda era già NULL.
  */
 bool eliminaCoda(queue q);
+
+/*
+ * Funzione: rimuoviDaCoda
+ * -----------------------
+ * Rimuove una specifica segnalazione dalla coda tramite codice identificativo.
+ *
+ * Parametri:
+ *  q: La coda da cui rimuovere la segnalazione.
+ *  s: La segnalazione da rimuovere.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Se la segnalazione è presente, il nodo corrispondente viene rimosso
+ *  e la memoria del nodo viene liberata.
+ *  La segnalazione stessa NON viene liberata (gestita dal BST).
+ *
+ * Ritorna:
+ *  1: Se la segnalazione è stata rimossa con successo.
+ *  0: Se la segnalazione non è presente nella coda.
+ * -1: Se la coda non è valida (NULL).
+ */
+int rimuoviDaCoda(queue q, segnalazione s);

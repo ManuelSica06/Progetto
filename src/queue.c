@@ -117,3 +117,42 @@ bool eliminaCoda(queue q){
      
      return true;
 }
+
+int rimuoviDaCoda(queue q, segnalazione s)
+{
+    if(q == NULL){
+        return -1;
+    }
+
+    struct coda_node *corrente = q->head;
+    struct coda_node *precedente = NULL;
+
+     while(corrente != NULL){
+          // Richiamo la funzione definita in segnalazione.h per confrontare
+          // i codici delle due segnalazioni.
+          if(uguale(corrente->value, s) == 1){
+               if(precedente == NULL){
+                   // Il nodo da rimuovere è la testa.
+                   q->head = corrente->next;
+               }
+               else{
+                   precedente->next = corrente->next;
+               }
+
+               // Se ho rimosso la coda, aggiorno tail.
+               if(corrente->next == NULL){
+                   q->tail = precedente;
+               }
+
+               // Libero solo il nodo, non la segnalazione.
+               free(corrente);
+               (q->numel)--;
+               return 1;
+          }
+
+          precedente = corrente;
+          corrente = corrente->next;
+    }
+
+    return 0;
+}
