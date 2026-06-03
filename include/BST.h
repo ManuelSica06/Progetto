@@ -76,7 +76,7 @@ bool ricerca(BST T, segnalazione s);
  * Funzione inserimento
  * --------------------
  * Inserisce una nuova segnalazione nell'albero binario di ricerca,
- * mantenendo la proprietà d'ordinamento per codice identificativo.
+ * mantenendo le proprietà d'ordinamento per codice identificativo.
  * 
  * Parametri:
  *  T:    L'albero binario di ricerca in cui inserire la segnalazione;
@@ -87,7 +87,12 @@ bool ricerca(BST T, segnalazione s);
  * 
  * Post-condizione:
  *  L'albero binario di ricerca conterrà un nodo in più con la segnalazione inserita,
- *  mantenendo le prioprietà di ordinamento del BST.  
+ *  mantenendo le prioprietà di ordinamento del BST. 
+ *  Se la segnalazione ha un codice già presente, non viene inserita.
+ *
+ * Ritorna:
+ *  Il puntatore alla radice dell'albero aggiornato.
+ *  NULL se l'allocazione di memoria fallisce.
  */
 BST inserimento(BST T, segnalazione elem);
 
@@ -147,3 +152,64 @@ void visitaSimmetrica(BST T);
  *  Tutta la memoria associata all'albero e alle segnalazioni viene liberata.
  */
 void eliminaBST(BST T);
+
+/*
+ * Funzione: ricercaPerCodice
+ * --------------------------
+ * Ricerca una segnalazione nell'albero tramite il suo codice identificativo
+ * e la restituisce se trovata.
+ *
+ * Parametri:
+ *  T:      L'albero binario di ricerca in cui effettuare la ricerca.
+ *  codice: Il codice identificativo della segnalazione da cercare.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica all'albero.
+ *
+ * Ritorna:
+ *  La segnalazione corrispondente al codice se presente nell'albero.
+ *  NULL se la segnalazione non è presente o l'albero è vuoto.
+ */
+segnalazione ricercaPerCodice(BST T, int codice);
+
+/*
+ * Funzione: visualizzaPerStatoBST
+ * ----------------------------
+ * Visita l'albero e stampa tutte le segnalazioni
+ * che corrispondono allo stato richiesto.
+ *
+ * Parametri:
+ *  T:     L'albero binario di ricerca da visitare.
+ *  stato: Lo stato da filtrare (1 aperta, 2 in lavorazione, 3 chiusa).
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica all'albero.
+ */
+void visualizzaPerStatoBST(BST T, int stato);
+
+/*
+ * Funzione: generaReportBST
+ * ----------------------
+ * Visita l'albero e genera un report con il numero totale
+ * di segnalazioni, suddivise per stato.
+ *
+ * Parametri:
+ *  T: L'albero binario di ricerca da analizzare.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica all'albero.
+ *
+ * Stampa:
+ *  Numero totale di segnalazioni.
+ *  Numero di segnalazioni aperte, in lavorazione e chiuse.
+ */
+void generaReportBST(BST T);
