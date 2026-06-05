@@ -19,7 +19,6 @@ struct c_data{
 
 data aggiungiData(int gg, int mm, int aa){
     if(!verificaData(gg, mm, aa)){
-        printf("La data non è valida.");
         return NULL;
     }
     
@@ -56,7 +55,6 @@ bool verificaData(int gg, int mm, int aa){
 
 bool eliminaData(data d){
     if(d == NULL){
-        printf("Errore nella data.");
         return false;
     }
 
@@ -66,7 +64,6 @@ bool eliminaData(data d){
 
 void stampaData(data d){
     if(d==NULL){
-        printf("Errore nella data.");
         return;
     }
 
