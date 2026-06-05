@@ -28,7 +28,7 @@ int main(void)
     segnalazione s;
 
     do {
-        printf("Inserire una scelta sapendo che: ");
+        printf("\nInserire una scelta sapendo che:\n");
         printf("1. Registra una nuova segnalazione;\n");
         printf("2. Visualizza tutte le segnalazioni;\n");
         printf("3. Cerca una segnalazione tramite codice;\n");
@@ -44,7 +44,7 @@ int main(void)
         switch(scelta){
             case 1:
                 // %[^\n] utile per leggere gli spazi in una stringa.
-                printf("Nome cittadino: ");
+                printf("\nNome cittadino: ");
                 scanf(" %[^\n]", cittadino);
                 printf("Categoria: ");
                 scanf(" %[^\n]", categoria);
@@ -57,7 +57,7 @@ int main(void)
 
                 d = aggiungiData(gg, mm, aa);
                 if(d == NULL){
-                    printf("Data non valida.\n");
+                    printf("\n");
                     break;
                 }
 
@@ -71,37 +71,42 @@ int main(void)
                 printf("Segnalazione registrata con successo.\n");
                 break;
             case 2:
+                printf("\n");
                 visualizzaTutte(archivio);
                 break;
             case 3:
-                printf("Codice da cercare: ");
+                printf("\nCodice da cercare: ");
                 scanf("%d", &codice);
 
                 cercaSegnalazione(archivio, codice);
                 break;
             case 4:
-                printf("Codice da aggiornare: ");
+                printf("\nCodice da aggiornare: ");
                 scanf("%d", &codice);
 
                 aggiornaStatoSegnalazione(archivio, codice);
                 break;
             case 5:
-                printf("Stato (1=Aperta, 2=In lavorazione, 3=Chiusa): ");
+                printf("\nStato (1=Aperta, 2=In lavorazione, 3=Chiusa): ");
                 scanf("%d", &stato);
 
                 visualizzaPerStato(archivio, stato);
                 break;
             case 6:
+                printf("\n");
                 visualizzaUrgenti(alta, media, bassa);
                 break;
             case 7:
-                printf("Codice da eliminare: ");
+                printf("\nCodice da eliminare: ");
                 scanf("%d", &codice);
 
                 archivio = eliminaSegnalazioneDaArchivio(archivio, codice, alta, media, bassa);
                 break;
             case 8:
+                printf("\n");
                 generaReport(archivio);
+                break;
+            case 0:
                 break;
             default:
                 printf("Scelta non valida.\n");
