@@ -21,7 +21,7 @@ struct bst_node{
 };
 
 /*
- * Funzione: estraiSegnalazione
+ * Funzione: estraiDaNodo
  * ----------------------------
  * Estrae la segnalazione contenuta in un nodo del BST.
  *
@@ -38,7 +38,7 @@ struct bst_node{
  *  La segnalazione contenuta nel nodo.
  *  NULL se il nodo è NULL.
  */
-segnalazione estraiSegnalazione(struct bst_node *N);
+static segnalazione estraiDaNodo(struct bst_node *N);
 
 /*
  * Funzione: inserisciSegnalazione
@@ -120,7 +120,7 @@ static struct bst_node* valoreMinore(struct bst_node* node);
  */
 static void contaReport(BST T, int *totale, int *aperte, int *inLavorazione, int *chiuse);
 
-segnalazione estraiSegnalazione(struct bst_node *N)
+segnalazione estraiDaNodo(struct bst_node *N)
 {
     if (N == NULL){
         return NULLITEM;
@@ -156,13 +156,13 @@ bool ricerca(BST T, segnalazione s)
 
     // Richiamo la funzione definita in segnalazione.h per verificare se
     // il codice delle due segnalazioni sia uguale.
-    if(uguale(s, estraiSegnalazione(T))==1){
+    if(uguale(s, estraiDaNodo(T))==1){
         return 1;
     }
 
     // Richiamo la funzione definita in segnalazione.h per verificare se
     // il codice della prima segnalazione sia minore o meno.
-    if(minore(s, estraiSegnalazione(T))==1){
+    if(minore(s, estraiDaNodo(T))==1){
         return ricerca(T->left, s);
     }
     else{
@@ -176,10 +176,10 @@ BST inserimento(BST T, segnalazione elem)
         return creaFoglia(elem);
     }
     // Se il codice è già presente nel BST, non viene inserito (nessun duplicato).
-    else if(minore(elem, estraiSegnalazione(T))==1){
+    else if(minore(elem, estraiDaNodo(T))==1){
         T->left = inserimento(T->left, elem);
     }
-    else if(minore(estraiSegnalazione(T), elem)==1){
+    else if(minore(estraiDaNodo(T), elem)==1){
         T->right = inserimento(T->right, elem);
     }
 
@@ -264,7 +264,7 @@ void visitaSimmetrica(BST T) {
 
     visitaSimmetrica(T->left);
     
-    segnalazione s = estraiSegnalazione(T);
+    segnalazione s = estraiDaNodo(T);
     
     // Richiamo la funzione definita in segnalazione.h per stampare
     // l'intera segnalazione.
@@ -291,7 +291,7 @@ segnalazione ricercaPerCodice(BST T, int codice){
         return NULL;
     }
 
-    segnalazione s = estraiSegnalazione(T);
+    segnalazione s = estraiDaNodo(T);
 
     // Richiamo la funzione definita in segnalazione.h per ricavare
     // il codice della segnalazione.
@@ -317,7 +317,7 @@ void visualizzaPerStatoBST(BST T, int stato)
 
     visualizzaPerStatoBST(T->left, stato);
 
-    segnalazione s = estraiSegnalazione(T);
+    segnalazione s = estraiDaNodo(T);
     if(ricavaStato(s) == stato){
         // Richiamo la funzione definita in segnalazione.h per stampare
         // l'intera segnalazione.
@@ -354,7 +354,7 @@ static void contaReport(BST T, int *totale, int *aperte, int *inLavorazione, int
 
     contaReport(T->left, totale, aperte, inLavorazione, chiuse);
 
-    segnalazione s = estraiSegnalazione(T);
+    segnalazione s = estraiDaNodo(T);
     (*totale)++;
 
     switch(ricavaStato(s)){
