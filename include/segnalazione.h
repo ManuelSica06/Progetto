@@ -212,9 +212,6 @@ int ricavaStato(segnalazione s);
  * Post-condizione:
  *  Nessuna modifica alla segnalazione.
  *
- * Side-effect:
- *  Nessuno.
- *
  * Ritorna:
  *  Il puntatore costante alla stringa categoria (se valida).
  *  NULL: Se la segnalazione è NULL.
