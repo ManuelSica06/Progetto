@@ -280,6 +280,59 @@ void testEliminazioneCompleta(void)
     printf("testEliminazioneCompleta: OK\n");
 }
 
+void testRicercaPerCategoria(void)
+{
+    BST archivio = nuovoArchivio();
+ 
+    data d1 = aggiungiData(1, 1, 2026);
+    segnalazione s1 = creaSegnalazione("L", "Buche", "Buca", d1, 1);
+    archivio = inserimento(archivio, s1);
+ 
+    data d2 = aggiungiData(2, 1, 2026);
+    segnalazione s2 = creaSegnalazione("M", "Buche", "Buca", d2, 2);
+    archivio = inserimento(archivio, s2);
+ 
+    data d3 = aggiungiData(3, 1, 2026);
+    segnalazione s3 = creaSegnalazione("N", "Illuminazione", "Lampione guasto", d3, 3);
+    archivio = inserimento(archivio, s3);
+ 
+    // Ricerca categoria presente: deve trovare 2 risultati
+    assert(ricercaPerCategoriaBST(archivio, "Buche") == 2);
+ 
+    // Ricerca categoria presente con un solo risultato
+    assert(ricercaPerCategoriaBST(archivio, "Illuminazione") == 1);
+ 
+    // Ricerca categoria non presente: deve restituire 0
+    assert(ricercaPerCategoriaBST(archivio, "Rifiuti") == 0);
+ 
+    eliminaBST(archivio);
+    printf("testRicercaPerCategoria: OK\n");
+}
+ 
+void testReportCategorie(void)
+{
+    BST archivio = nuovoArchivio();
+ 
+    data d1 = aggiungiData(1, 2, 2026);
+    segnalazione s1 = creaSegnalazione("O", "Rifiuti", "Cassonetto pieno", d1, 1);
+    archivio = inserimento(archivio, s1);
+ 
+    data d2 = aggiungiData(2, 2, 2026);
+    segnalazione s2 = creaSegnalazione("P", "Rifiuti", "Rifiuti abbandonati", d2, 2);
+    archivio = inserimento(archivio, s2);
+ 
+    data d3 = aggiungiData(3, 2, 2026);
+    segnalazione s3 = creaSegnalazione("Q", "Buche", "Buca profonda", d3, 3);
+    archivio = inserimento(archivio, s3);
+ 
+    // Verifica che il report venga generato senza crash
+    // (l'output è su schermo, non verificabile con assert)
+    generaReportCategorieBST(archivio);
+ 
+    eliminaBST(archivio);
+    printf("testReportCategorie: OK\n");
+}
+
 // Main della test suite
 int main(void)
 {
@@ -308,6 +361,10 @@ int main(void)
     printf("\ngestione\n");
     testRegistrazione();
     testEliminazioneCompleta();
+
+    printf("\nRicerca e report per categoria\n");
+    testRicercaPerCategoria();
+    testReportCategorie();
 
     printf("\nTutti i test sono stati superati.");
 
