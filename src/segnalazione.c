@@ -184,3 +184,11 @@ int ricavaStato(segnalazione s){
 
     return s->stato;
 }
+
+const char *ricavaCategoria(segnalazione s){
+    if(s==NULL){
+        return NULL;
+    }
+ 
+    return s->categoria;
+}

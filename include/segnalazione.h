@@ -197,3 +197,26 @@ int ricavaCodice(segnalazione s);
  * -1: Se la segnalazione è NULL.
  */
 int ricavaStato(segnalazione s);
+
+/*
+ * Funzione: ricavaCategoria
+ * -------------------------
+ * Restituisce il puntatore alla stringa categoria della segnalazione.
+ *
+ * Parametri:
+ *  s: La segnalazione da cui ricavare la categoria.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica alla segnalazione.
+ *
+ * Side-effect:
+ *  Nessuno.
+ *
+ * Ritorna:
+ *  Il puntatore costante alla stringa categoria (se valida).
+ *  NULL: Se la segnalazione è NULL.
+ */
+const char *ricavaCategoria(segnalazione s);
