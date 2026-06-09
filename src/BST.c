@@ -8,9 +8,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 #include "../include/segnalazione.h"
 #include "../include/BST.h"
+
+// Numero massimo di categorie gestite nel report.
+#define MAX_CATEGORIE 50
+
+// Struttura che si occupa del conteggio delle categorie nel report.
+typedef struct{
+    const char *categoria;
+    int cont;
+} voceCategoria;
 
 #define NULLITEM NULL
 
@@ -119,6 +129,28 @@ static struct bst_node* valoreMinore(struct bst_node* node);
  *  Nessuna modifica all'albero.
  */
 static void contaReport(BST T, int *totale, int *aperte, int *inLavorazione, int *chiuse);
+
+/*
+ * Funzione: raccogliCategorie
+ * ---------------------------
+ * Funzione ricorsiva per generaReportCategorieBST.
+ * Visita l'albero e aggiorna l'array di voceCategoria,
+ * incrementando il contatore della categoria trovata o aggiungendola
+ * se non ancora presente. Gestisce al massimo MAX_CATEGORIE categorie distinte.
+ *
+ * Parametri:
+ *  T:       L'albero da visitare.
+ *  voci:    Array di voceCategoria (dimensione MAX_CATEGORIE).
+ *  numVoci: Puntatore al numero corrente di voci nell'array.
+ *
+ * Pre-condizione:
+ *  voci e numVoci non devono essere NULL.
+ *
+ * Post-condizione:
+ *  L'array viene aggiornato con i contatori delle categorie.
+ *  Nessuna modifica all'albero.
+ */
+static void raccogliCategorie(BST T, voceCategoria voci[], int *numVoci);
 
 segnalazione estraiDaNodo(struct bst_node *N)
 {
@@ -364,4 +396,92 @@ static void contaReport(BST T, int *totale, int *aperte, int *inLavorazione, int
     }
 
     contaReport(T->right, totale, aperte, inLavorazione, chiuse);
+}
+
+int ricercaPerCategoriaBST(BST T, const char *categoria)
+{
+    if(T == NULL || categoria == NULL){
+        return 0;
+    }
+ 
+    int trovate = 0;
+  
+    // Il BST è ordinato per codice e non per categoria quindi
+    // bisogna visitare l'intero albero (visita simmetrica).
+    trovate += ricercaPerCategoriaBST(T->left, categoria);
+ 
+    segnalazione s = estraiDaNodo(T);
+    
+    // Richiamo la funzione definita in segnalazione.h per prelevare
+    // la categoria.
+    if(strcmp(ricavaCategoria(s), categoria) == 0){
+        stampaSegnalazione(s);
+        trovate++;
+    }
+ 
+    trovate += ricercaPerCategoriaBST(T->right, categoria);
+ 
+    return trovate;
+}
+ 
+static void raccogliCategorie(BST T, voceCategoria voci[], int *numVoci)
+{
+    if(T == NULL){
+        return;
+    }
+ 
+    raccogliCategorie(T->left, voci, numVoci);
+ 
+    // const permette di bloccare qualsiasi tipo di scrittura con quel puntatore
+    // permettendo, così, di essere modificato solo richiamando le funzioni dell'ADT.
+    const char *cat = ricavaCategoria(estraiDaNodo(T));
+    
+    int i;
+    int trovata = 0;
+ 
+    // Verifichiamo se la categoria della segnalazione corrente (cat)
+    // è già presente
+    for(i = 0; i < *numVoci; i++){
+        if(strcmp(voci[i].categoria, cat) == 0){
+            voci[i].cont++;
+            trovata = 1;
+            break;
+        }
+    }
+ 
+    if((!trovata) && (*numVoci < MAX_CATEGORIE)){
+        voci[*numVoci].categoria = cat;
+        voci[*numVoci].cont = 1;
+        (*numVoci)++;
+    }
+ 
+    raccogliCategorie(T->right, voci, numVoci);
+}
+ 
+void generaReportCategorieBST(BST T)
+{
+    if(archivioVuoto(T)){
+        printf("Archivio vuoto, nessun report per categoria da generare.\n");
+        return;
+    }
+ 
+    voceCategoria voci[MAX_CATEGORIE];
+    int numVoci = 0;
+    int i;
+ 
+    raccogliCategorie(T, voci, &numVoci);
+ 
+    printf("Report per categoria:\n");
+    for(i = 0; i < numVoci; i++){
+        printf("%s: %d\n", voci[i].categoria, voci[i].cont);
+    }
+ 
+    // Individua la categoria più frequente.
+    int massima = 0;
+    for(i = 1; i < numVoci; i++){
+        if(voci[i].cont > voci[massima].cont){
+            massima = i;
+        }
+    }
+    printf("Categoria più frequente: %s (%d segnalazioni)\n", voci[massima].categoria, voci[massima].cont);
 }

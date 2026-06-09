@@ -213,3 +213,49 @@ void visualizzaPerStatoBST(BST T, int stato);
  *  Numero di segnalazioni aperte, in lavorazione e chiuse.
  */
 void generaReportBST(BST T);
+
+/*
+ * Funzione: ricercaPerCategoriaBST
+ * ---------------------------------
+ * Visita l'albero e stampa tutte le segnalazioni la cui categoria
+ * corrisponde esattamente alla stringa fornita.
+ * Poiché il BST è ordinato per codice e non per categoria,
+ * viene effettuata una visita simmetrica completa dell'albero.
+ *
+ * Parametri:
+ *  T:         L'albero binario di ricerca da visitare.
+ *  categoria: La stringa categoria da cercare.
+ *
+ * Pre-condizione:
+ *  categoria non deve essere NULL.
+ *
+ * Post-condizione:
+ *  Nessuna modifica all'albero.
+ *
+ * Ritorna:
+ *  Il numero di segnalazioni trovate con quella categoria.
+ *  0 se nessuna segnalazione corrisponde o l'albero è vuoto.
+ */
+int ricercaPerCategoriaBST(BST T, const char *categoria);
+ 
+/*
+ * Funzione: generaReportCategorieBST
+ * ------------------------------------
+ * Visita l'albero e genera un report con il conteggio delle
+ * segnalazioni per ogni categoria distinta, indicando anche
+ * la categoria più frequente.
+ *
+ * Parametri:
+ *  T: L'albero binario di ricerca da analizzare.
+ *
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica all'albero.
+ *
+ * Stampa:
+ *  Conteggio per ogni categoria distinta.
+ *  Categoria con più segnalazioni.
+ */
+void generaReportCategorieBST(BST T);
