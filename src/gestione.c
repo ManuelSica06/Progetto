@@ -229,4 +229,18 @@ void generaReport(BST T)
 
     // Richiamo la funzione definita in BST.h per generare il report.
     generaReportBST(T);
+    generaReportCategorieBST(T);
+}
+
+void cercaPerCategoria(BST T, char *categoria){
+    if(archivioVuoto(T)){
+        printf("Archivio vuoto.\n");
+        return;
+    }
+    else{
+        printf("Segnalazioni con categoria %s:\n", categoria);
+        if(ricercaPerCategoriaBST(T, categoria) == 0){
+            printf("Nessuna segnalazione trovata con categoria %s.\n", categoria);
+        }
+    }
 }

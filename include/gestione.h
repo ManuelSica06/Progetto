@@ -167,3 +167,20 @@ BST eliminaSegnalazioneDaArchivio(BST T, int codice, queue alta, queue media, qu
  *  Nessuna modifica all'archivio.
  */
 void generaReport(BST T);
+
+/*
+ * Funzione: cercaPerCategoria
+ * ---------------------------
+ * Ricerca una segnalazione dalla categoria.
+ *
+ * Parametri:
+ *  T: L'albero binario di ricerca (archivio).
+ *  categoria: La categoria da ricercare.
+ * 
+ * Pre-condizione:
+ *  Nessuna.
+ *
+ * Post-condizione:
+ *  Nessuna modifica all'archivio.
+ */
+void cercaPerCategoria(BST T, char *categoria);

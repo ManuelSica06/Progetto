@@ -22,7 +22,7 @@ int main(void)
     int scelta, codice, stato, urgenza;
     int gg, mm, aa;
 
-    char cittadino[100], categoria[100], descrizione[200];
+    char cittadino[100], categoria[100], descrizione[200], categoriaRicerca[100];
     
     data d;
     segnalazione s;
@@ -32,11 +32,12 @@ int main(void)
         printf("1. Registra una nuova segnalazione;\n");
         printf("2. Visualizza tutte le segnalazioni;\n");
         printf("3. Cerca una segnalazione tramite codice;\n");
-        printf("4. Aggiorna lo stato di una segnalazione;\n");
-        printf("5. Visualizza per stato;\n");
-        printf("6. Visualizza segnalazioni urgenti;\n");
-        printf("7. Elimina una segnalazione;\n");
-        printf("8. Genera report;\n");
+        printf("4. Cerca una segnalazione tramite categoria;\n");
+        printf("5. Aggiorna lo stato di una segnalazione;\n");
+        printf("6. Visualizza per stato;\n");
+        printf("7. Visualizza segnalazioni urgenti;\n");
+        printf("8. Elimina una segnalazione;\n");
+        printf("9. Genera report;\n");
         printf("0. Esci.\n");
         printf("Scelta: ");
         scanf("%d", &scelta);
@@ -81,28 +82,34 @@ int main(void)
                 cercaSegnalazione(archivio, codice);
                 break;
             case 4:
+                printf("\nCategoria da cercare: ");
+                scanf(" %[^\n]", categoriaRicerca);
+
+                cercaPerCategoria(archivio, categoriaRicerca);
+                break;
+            case 5:
                 printf("\nCodice da aggiornare: ");
                 scanf("%d", &codice);
 
                 aggiornaStatoSegnalazione(archivio, codice);
                 break;
-            case 5:
+            case 6:
                 printf("\nStato (1=Aperta, 2=In lavorazione, 3=Chiusa): ");
                 scanf("%d", &stato);
 
                 visualizzaPerStato(archivio, stato);
                 break;
-            case 6:
+            case 7:
                 printf("\n");
                 visualizzaUrgenti(alta, media, bassa);
                 break;
-            case 7:
+            case 8:
                 printf("\nCodice da eliminare: ");
                 scanf("%d", &codice);
 
                 archivio = eliminaSegnalazioneDaArchivio(archivio, codice, alta, media, bassa);
                 break;
-            case 8:
+            case 9:
                 printf("\n");
                 generaReport(archivio);
                 break;
