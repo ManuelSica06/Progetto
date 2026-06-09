@@ -1,3 +1,10 @@
+/*
+ * File: queue.c
+ * Autore: [Manuel Sica]
+ * Data: [21/05/2026]
+ * Descrizione: Gestisce le code di priorità: Bassa, Media e Alta.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
