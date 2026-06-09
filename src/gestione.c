@@ -214,7 +214,11 @@ BST eliminaSegnalazioneDaArchivio(BST T, int codice, queue alta, queue media, qu
         case 3: rimuoviDaCoda(alta, s);  break;
     }
 
+    // Rimuovo la segnalazione dal BST
     T = eliminaNodo(T, s);
+
+    // Elimino la segnalazione
+    eliminaSegnalazione(s);
     printf("Segnalazione con codice %d eliminata con successo.\n", codice);
 
     return T;
